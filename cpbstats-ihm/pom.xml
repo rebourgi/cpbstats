@@ -1,0 +1,98 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>fr.cpbstats</groupId>
+		<artifactId>cpbstats</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>cpbstats-ihm</artifactId>
+	<packaging>pom</packaging>
+	<name>cpbstats :: ihm</name>
+
+	<properties>
+		<parent.basedir>${basedir}/..</parent.basedir>
+		<sonar.sources>app</sonar.sources>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${basedir}/dist</directory>
+						</fileset>
+						<fileset>
+							<directory>${basedir}/.tmp</directory>
+						</fileset>
+						<fileset>
+							<directory>y${basedir}/app/components</directory>
+						</fileset>
+						<fileset>
+							<directory>${basedir}/node_modules</directory>
+						</fileset>
+						<fileset>
+							<directory>${basedir}/plato-reports</directory>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.trecloux</groupId>
+				<artifactId>yeoman-maven-plugin</artifactId>
+				<version>0.4</version>
+				<configuration>
+					<yeomanProjectDirectory>${basedir}</yeomanProjectDirectory>
+					<skipTests>true</skipTests>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+
+
+	<profiles>
+		<profile>
+			<id>jenkins</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.trecloux</groupId>
+						<artifactId>yeoman-maven-plugin</artifactId>
+						<version>0.4</version>
+						<configuration>
+							<yeomanProjectDirectory>${basedir}</yeomanProjectDirectory>
+							<skipTests>true</skipTests>
+							<buildArgs>plato build --no-color</buildArgs>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

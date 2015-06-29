@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+	<bean id="mapper" class="org.dozer.DozerBeanMapper" />
+	
+	<security:global-method-security
+		pre-post-annotations="enabled" />
+
+<!-- 	<security:http pattern="/rest/authentication/login*"
+		security="none" />
+
+	<security:http pattern="/rest/api-docs/swagger.json" security="none" />
+	<security:http pattern="/swagger-ui/**" security="none" /> -->
+	
+	<security:http auto-config="true" use-expressions="true"
+		entry-point-ref="entryPoint">
+		
+		<security:intercept-url pattern="/rest/authentication/login*" access="permitAll" />
+        <security:intercept-url pattern="/api-docs/swagger.json" access="permitAll" />
+        <security:intercept-url pattern="/swagger-ui/**" access="permitAll" />
+		<security:intercept-url pattern="/**" access="isAuthenticated()" />
+
+		<security:logout delete-cookies="JSESSIONID"
+			logout-url="/perform_logout" />
+	</security:http>
+	<!-- Redirect if authentication fails -->
+	<bean id="entryPoint"
+		class="org.springframework.security.web.authentication.DelegatingAuthenticationEntryPoint">
+		<constructor-arg>
+			<map>
+				<entry>
+					<key>
+						<bean
+							class="com.orange.renorc.security.ServicesRequestMatcher" />
+					</key>
+					<bean
+						class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
+				</entry>
+			</map>
+
+		</constructor-arg>
+		<property name="defaultEntryPoint">
+			<bean
+				class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
+		</property>
+	</bean>
+
+	<bean name="userDetailsService" class="com.orange.renorc.security.UserDetailsServiceImpl"/>
+
+	<security:authentication-manager alias="authenticationManager"
+		erase-credentials="true">
+		<security:authentication-provider
+			user-service-ref="userDetailsService">
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+</beans>
