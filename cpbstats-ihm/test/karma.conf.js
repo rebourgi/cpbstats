@@ -20,10 +20,9 @@ module.exports = function(config) {
 	// list of files / patterns to load in the browser
 	files : [
 	// bower:js
-	'bower_components/es5-shim/es5-shim.js',
 	'bower_components/jquery/dist/jquery.js',
+	'bower_components/es5-shim/es5-shim.js',
 	'bower_components/angular/angular.js',
-	'bower_components/bootstrap/dist/js/bootstrap.js',
 	'bower_components/angular-animate/angular-animate.js',
 	'bower_components/angular-resource/angular-resource.js',
 	'bower_components/angular-route/angular-route.js',
@@ -35,6 +34,7 @@ module.exports = function(config) {
 	'bower_components/pdfjs-dist/build/pdf.js',
 	'bower_components/pdfjs-dist/build/pdf.worker.js',
 	'bower_components/angular-pdf/dist/angular-pdf.js',
+	'bower_components/bootstrap/dist/js/bootstrap.js',
 	'bower_components/angular-modal-service/dst/angular-modal-service.js',
 	'bower_components/angular-ui-grid/ui-grid.js',
 	'bower_components/angular-mocks/angular-mocks.js',
