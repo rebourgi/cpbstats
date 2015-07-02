@@ -8,10 +8,11 @@
 angular.module('app').controller('AuthenticationCtrl', function($rootScope, $scope, $log, authorisationService, $location, toaster) {
     // Executé lors du click sur le bouton de login
     $scope.submit = function() {
+    	$location.path('/home');
+    	return;
         authorisationService.authenticate($scope.login.pseudo, $scope.login.password).success(function(data, status) {
             if (status === 200) {
-                // affichage de message de
-                // success
+                // affichage de message de success
                 $log.info("sucess connexion");
 
                 $rootScope.isLogged = true;
@@ -19,8 +20,7 @@ angular.module('app').controller('AuthenticationCtrl', function($rootScope, $sco
                 $rootScope.groups = data.groups;
                 $rootScope.currentGroup = data.groups[0];
             }
-            // Redirection vers la page de liste
-            // des processus
+            // Redirection vers la page d'accueil
             $location.path('/home');
 
         }).error(function(data, status) {

@@ -37,6 +37,8 @@ module.exports = function(config) {
 	'bower_components/bootstrap/dist/js/bootstrap.js',
 	'bower_components/angular-modal-service/dst/angular-modal-service.js',
 	'bower_components/angular-ui-grid/ui-grid.js',
+	'bower_components/Chart.js/Chart.js',
+	'bower_components/angular-chart.js/dist/angular-chart.js',
 	'bower_components/angular-mocks/angular-mocks.js',
 	// endbower
 		'app/scripts/**/*.js', 'test/spec/**/*.js' ],

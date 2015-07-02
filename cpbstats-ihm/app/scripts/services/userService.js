@@ -7,6 +7,6 @@
  */
 angular.module('app').service('userService', function($http) {
     this.getUsers = function() {
-        return $http.get('/fintrack-back/rest/user/list');
+        return $http.get(appConfig.apiUrl + '/user/list');
     };
 });

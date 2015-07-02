@@ -4,7 +4,7 @@
 var app = angular.module(
         'app',
         [ 'ngAnimate', 'toaster', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'ui.bootstrap', 'angularFileUpload', 'angularModalService',
-                'ui.grid', 'ui.grid.selection', 'pdf']).config(function($routeProvider) {
+                'ui.grid', 'ui.grid.selection', 'chart.js']).config(function($routeProvider) {
     $routeProvider.when('/home', {
         templateUrl : 'views/home.html'
     }).when('/signin', {
@@ -18,3 +18,7 @@ var app = angular.module(
         redirectTo : '/signin'
     });
 });
+
+var appConfig = {
+	apiUrl: "/cpbstats-api/rest"
+};

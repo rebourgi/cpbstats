@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="bower_components/angularjs-toaster/toaster.css" />
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+<link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
 <!-- endbower -->
 <!-- endbuild -->
 <!-- build:css(.tmp) styles/main.css -->
@@ -58,14 +59,6 @@
 			</div>
 		</nav>
 	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<img src="images/logo.png" alt="Capgemini logo"
-					class="img-responsive">
-			</div>
-		</div>
-	</div>
 
 	<toaster-container
 		toaster-options="{'time-out': 3000, 'close-button':true}"></toaster-container>
@@ -101,28 +94,19 @@
 	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 	<script src="bower_components/angular-modal-service/dst/angular-modal-service.js"></script>
 	<script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+	<script src="bower_components/Chart.js/Chart.js"></script>
+	<script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
 	<!-- endbower -->
 	<!-- endbuild -->
 
 
 	<!-- build:js({.tmp,app}) scripts/scripts.js -->
 	<script src="scripts/app.js"></script>
-	<script src="scripts/controllers/process.js"></script>
 	<script src="scripts/controllers/navigation.js"></script>
 	<script src="scripts/controllers/authentication.js"></script>
-	<script src="scripts/controllers/assigntask.js"></script>
-	<script src="scripts/controllers/taskdetail.js"></script>
-	<script src="scripts/controllers/tasklist.js"></script>
-	<script src="scripts/controllers/parsingmodal.js"></script>
-	<script src="scripts/controllers/fileupload.js"></script>
 	<script src="scripts/controllers/home.js"></script>
-	<script src="scripts/controllers/purchaseorderline.js"></script>
-	<script src="scripts/controllers/pdfviewer.js"></script>
 	<script src="scripts/services/authorisationService.js"></script>
-	<script src="scripts/services/processService.js"></script>
-	<script src="scripts/services/taskService.js"></script>
 	<script src="scripts/services/userService.js"></script>
-	<script src="scripts/services/fileService.js"></script>
 	<!-- endbuild -->
 
 	</div>

@@ -1,8 +1,10 @@
-<div class="container" id="view">
+<div class="container" id="view" ng-controller="HomeCtrl">
 	<div class="row" style="margin-bottom: 50px;">
 		<div class="col-md-2 pull-right">
-			<h4>Home</h4>
+			<h4>Dashboard</h4>
 		</div>
+			<canvas id="doughnut" class="chart chart-doughnut" data="data"
+  				labels="labels"></canvas> 
 	</div>
 	<div class="row" style="margin-bottom: 50px;">
 		<div class="col-md-3 text-center"
