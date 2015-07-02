@@ -1,0 +1,223 @@
+.browsehappy {
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
+}
+
+body {
+	padding: 0;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header, .marketing, .footer {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 10px;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+	margin-top: 0;
+	margin-bottom: 0;
+	line-height: 40px;
+	padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer navbar-fixed-bottom {
+	padding-top: 19px;
+	color: #777;
+	border-top: 1px solid #e5e5e5;
+	background-color: #cccccc;
+}
+
+.container-narrow>hr {
+	margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+	text-align: center;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.jumbotron .btn {
+	font-size: 21px;
+	padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+	margin: 40px 0;
+}
+
+.marketing p+h4 {
+	margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+	.container {
+		max-width: 730px;
+	}
+
+	/* Remove the padding we set earlier */
+	.header, .marketing, .footer {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	/* Space out the masthead */
+	.header {
+		margin-bottom: 30px;
+	}
+	/* Remove the bottom border on the jumbotron for visual effect */
+	.jumbotron {
+		border-bottom: 0;
+	}
+	.grid {
+		width: 800px;
+		height: 300px;
+	}
+}
+
+.mygrid {
+	width: 590px;
+	height: 210px;
+}
+
+.my-drop-zone {
+	border: solid 1px black;
+	background-color: white;
+}
+
+.another-file-over-class {
+	border: dotted 1px green;
+}
+
+html, body {
+	height: 100%;
+}
+
+{
+box-sizing
+
+
+
+
+:
+
+
+ 
+
+
+border-box
+
+
+
+
+;
+}
+.validate-page {
+	width: 100%;
+}
+
+.form-group-validate {
+	margin: 30px;
+}
+
+.wrapper, .form-validate-style {
+	height: 700px;
+	border: 2px solid #DFDFDF;
+	box-shadow: 5px 5px 5px 0px #656565;
+	border-radius: 10px;
+}
+
+.wrapper {
+	width: 100%;
+	overflow-x: auto;
+}
+
+.pdf-controls {
+	width: 100%;
+	display: block;
+	background: #eee;
+	padding: 1em;
+}
+
+.rotate0 {
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+.rotate90 {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.rotate180 {
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+.rotate270 {
+	-webkit-transform: rotate(270deg);
+	transform: rotate(270deg);
+}
+
+.fixed {
+	position: fixed;
+	top: 0;
+	left: calc(50% - 480px);
+	z-index: 100;
+	width: 100%;
+	padding: 1em;
+	background: rgba(238, 238, 238, .9);
+	width: 960px;
+}
+
+.badge {
+	/*   display: block; */
+	/*   position: absolute; */
+	/*   top: -12px; */
+	/*   right: 3px; */
+	/*   line-height: 16px; */
+	/*   height: 16px; */
+	/*   padding: 0 5px; */
+	/*   color: white; */
+	/*   text-shadow: 0 1px rgba(0, 0, 0, 0.25); */
+	border-width: 4px;
+	border-style: solid;
+	border-radius: 50px;
+}
+
+.my-fluid-container {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.validate-form {
+	width: 800px;
+}
+
+.vertical-align {
+	display: flex;
+	flex-direction: row;
+}
+
+.vertical-align>[class^="col-"], .vertical-align>[class*=" col-"] {
+	display: flex;
+	align-items: center; /* Align the flex-items vertically */
+	justify-content: center; /* Optional, to align inner flex-items 
+                              horizontally within the column  */
+}
+
+#view {
+	margin-bottom: 90px;
+}

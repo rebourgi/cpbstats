@@ -1,0 +1,47 @@
+<div class="container" id="view">
+	<div class="row" style="margin-bottom: 50px;">
+		<div class="col-md-2 pull-right">
+			<h4>Home</h4>
+		</div>
+	</div>
+	<div class="row" style="margin-bottom: 50px;">
+		<div class="col-md-3 text-center"
+			ng-if="isAdmin() || isCommercial() || isProjectHeader()">
+			<a ng-href="{{poLink}}" ng-click="poRedirect()"> <span
+				class="badge pull-right" style="background-color: red;"
+				ng-if="(isAdmin() || isProjectHeader()) && nbPoLineToValidate !==0">{{nbPoLineToValidate}}</span>
+				<img src="images/purchaseOrder.png" alt="Po logo"
+				class="img-responsive">
+			</a>
+			<h4>Purchase Order</h4>
+		</div>
+		<div class="col-md-3 col-md-offset-1 text-center"
+			ng-if="isAdmin() || isProjectHeader()">
+			<a> <img src="images/order-history.png" alt="Orders logo"
+				class="img-responsive">
+			</a>
+			<h4>Orders</h4>
+		</div>
+		<div class="col-md-3 col-md-offset-1 text-center"
+			ng-if="isAdmin() || isProjectHeader()">
+			<a><span class="badge pull-right" style="background-color: red;"
+				ng-if="isAdmin() || isProjectHeader()">Notif</span> <img
+				src="images/invoice.png" alt="Invoice logo" class="img-responsive">
+			</a>
+			<h4>Invoices</h4>
+		</div>
+		<div class="col-md-3 text-center"
+			ng-if="isAdmin() || isCommercial() || isProjectHeader()">
+			<a> <img src="images/reporting.png" alt="Reporting logo"
+				class="img-responsive">
+			</a>
+			<h4>Reporting</h4>
+		</div>
+		<div class="col-md-3 col-md-offset-1 text-center" ng-if="isAdmin()">
+			<a> <img src="images/settings.png" alt="Settings logo"
+				class="img-responsive">
+			</a>
+			<h4>Settings</h4>
+		</div>
+	</div>
+</div>

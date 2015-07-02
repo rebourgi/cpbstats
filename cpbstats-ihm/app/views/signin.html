@@ -1,0 +1,47 @@
+<div class="container" id="view">
+	<div class="row" style="margin-bottom: 15px;">
+		<div class="col-md-2 pull-left">
+			<h4>Connexion</h4>
+		</div>
+	</div>
+	<div class="form-container">
+		<form class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<div class="input-group input-group-lg">
+						<span class="input-group-addon"> <span
+							class="glyphicon glyphicon-user"></span>
+						</span>
+						<!-- Utilisation de ng-model pour enregistrer la valeur du champ automatiquement (databinding). -->
+						<input type="text" name="username" id="username" required
+							ng-model="login.pseudo" class="form-control"
+							placeholder="Nom d'utilisateur">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group input-group-lg">
+						<span class="input-group-addon"> <span
+							class="glyphicon glyphicon-lock"></span>
+						</span>
+						<!-- Utilisation de ng-model pour enregistrer la valeur du champ automatiquement (databinding). -->
+						<input type="password" name="password" id="password" required
+							ng-model="login.password" class="form-control"
+							placeholder="Mot de passe">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-md-4 col-md-offset-4">
+						<button ng-click="submit()"
+							class="btn btn-primary btn-md btn-block">
+							<span class="glyphicon glyphicon-log-in"></span> Se connecter
+						</button>
+					</div>
+					<div ng-show="isAlert" class="alert alert-danger" role="alert">
+						le pseudo ou le mot de passe que vous avez saisi est incorrecte!</div>
+					<div ng-show="isAlertt" class="alert alert-success" role="alert">
+						Connexion réussie</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
