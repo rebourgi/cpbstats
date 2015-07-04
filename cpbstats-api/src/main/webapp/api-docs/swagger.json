@@ -4,6 +4,142 @@
     "version" : "1.0.0",
     "title" : "CPB Stats APIs"
   },
-  "basePath" : "/cpbrennestt-api/rest",
-  "schemes" : [ "http", "https" ]
+  "basePath" : "/cpbstats-api/rest",
+  "tags" : [ {
+    "name" : "Authentication"
+  }, {
+    "name" : "Exercices"
+  } ],
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/authentication/login" : {
+      "get" : {
+        "tags" : [ "Authentication" ],
+        "summary" : "Login",
+        "description" : "",
+        "operationId" : "login",
+        "parameters" : [ {
+          "name" : "username",
+          "in" : "query",
+          "description" : "Username",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "password",
+          "in" : "query",
+          "description" : "User's password",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/UserGroupApiModel"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden"
+          }
+        }
+      }
+    },
+    "/authentication/logout" : {
+      "get" : {
+        "tags" : [ "Authentication" ],
+        "summary" : "Logout",
+        "description" : "",
+        "operationId" : "logout",
+        "responses" : {
+          "403" : {
+            "description" : "Forbidden"
+          }
+        }
+      }
+    },
+    "/exercices" : {
+      "get" : {
+        "tags" : [ "Exercices" ],
+        "summary" : "Liste des exercices de l'utilisateur authentifié",
+        "description" : "",
+        "operationId" : "getExercices",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Exercices" ],
+        "summary" : "Eregistre un exercice",
+        "description" : "",
+        "operationId" : "addExercices",
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/exercices/types" : {
+      "get" : {
+        "tags" : [ "Exercices" ],
+        "summary" : "Liste des types d'exercices",
+        "description" : "",
+        "operationId" : "getTypeExercices",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exercices/{id}" : {
+      "delete" : {
+        "tags" : [ "Exercices" ],
+        "summary" : "Liste des exercices de l'utilisateur authentifié",
+        "description" : "",
+        "operationId" : "deleteExercices",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "UserGroupApiModel" : {
+      "properties" : {
+        "username" : {
+          "type" : "string"
+        },
+        "groups" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
 }

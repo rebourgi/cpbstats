@@ -21,6 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -37,6 +38,7 @@ import fr.cpbstats.api.model.UserGroupApiModel;
 @Path("/authentication")
 @Api(value = "Authentication",
         description = "Restful Web Service to manage the log in and the log out")
+@Transactional
 public class SecurityApiService {
 
     /** The LOGGER. */
@@ -78,13 +80,17 @@ public class SecurityApiService {
             @ApiParam("User's password") @QueryParam("password") String password) {
 
         try {
-
             SecurityContext securityContext = SecurityContextHolder.getContext();
             LOGGER.debug("Security context : {}", securityContext);
 
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                     username, password);
             Authentication authentication = authenticationManager.authenticate(token);
+            securityContext.setAuthentication(authentication);
+
+            httpRequest.getSession().setAttribute(
+                    HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+                    securityContext);
 
             return null;
 

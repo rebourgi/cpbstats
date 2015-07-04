@@ -3,8 +3,8 @@
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 
-	<display-name>RenoRC API</display-name>
-	<description>APIs Rest pour RenoRC</description>
+	<display-name>CPB Stats</display-name>
+	<description>APIs Rest pour les stats CPB</description>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -23,7 +23,7 @@
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
 			<param-value>
-				fr.cpbrennestt.api
+				fr.cpbstats.api
 			</param-value>
 		</init-param>
 		<init-param>
