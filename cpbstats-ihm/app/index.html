@@ -34,6 +34,11 @@
 						</button>
 					</div>
 				</form>
+				<ul class="nav navbar-nav" ng-if="isLogged">
+					<li class="nav-item"><a href="#home" id="dashboard" name="dashboard" title="Dashboard" data-indexlinks>Tableau de bord</a></li>
+					<li class="nav-item"><a href="rencontres" id="rencontres" name="rencontres" title="Mes Rencontres" data-indexlinks>Mes Rencontres</a></li>
+					<li class="nav-item"><a href="#physique" id="physique" name="physique" title="Mon Physique" data-indexlinks>Mon Physique</a></li>
+				</ul>
 				<ul class="nav navbar-nav navbar-right" ng-if="isLogged">
 					<li class="dropdown"><a data-target=""
 						class="dropdown-toggle btn-inverse" data-toggle="dropdown"
