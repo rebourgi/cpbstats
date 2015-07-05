@@ -73,7 +73,7 @@ module.exports = function(grunt) {
 			livereload : 35729
 		    },
 		    proxies : [ {
-			context : '/fintrack-back',
+			context : '/cpbstats-api',
 			host : 'localhost',
 			port : 8080,
 			changeOrigin : true

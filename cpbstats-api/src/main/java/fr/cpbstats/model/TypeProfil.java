@@ -2,15 +2,12 @@ package fr.cpbstats.model;
 
 // Generated 29 juin 2015 23:26:12 by Hibernate Tools 3.2.2.GA
 
-import java.util.HashSet;
-import java.util.Set;
+import static javax.persistence.GenerationType.IDENTITY;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,7 +19,6 @@ public class TypeProfil implements java.io.Serializable {
 
     private int id;
     private String libelle;
-    private Set<Utilisateur> utilisateurs = new HashSet<Utilisateur>(0);
 
     public TypeProfil() {}
 
@@ -31,13 +27,8 @@ public class TypeProfil implements java.io.Serializable {
         this.libelle = libelle;
     }
 
-    public TypeProfil(int id, String libelle, Set<Utilisateur> utilisateurs) {
-        this.id = id;
-        this.libelle = libelle;
-        this.utilisateurs = utilisateurs;
-    }
-
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     public int getId() {
         return this.id;
@@ -54,15 +45,6 @@ public class TypeProfil implements java.io.Serializable {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
-    }
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "typeProfil")
-    public Set<Utilisateur> getUtilisateurs() {
-        return this.utilisateurs;
-    }
-
-    public void setUtilisateurs(Set<Utilisateur> utilisateurs) {
-        this.utilisateurs = utilisateurs;
     }
 
 }

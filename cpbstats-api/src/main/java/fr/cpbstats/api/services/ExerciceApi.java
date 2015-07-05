@@ -1,5 +1,6 @@
 package fr.cpbstats.api.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.DELETE;
@@ -8,20 +9,18 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 
-import fr.cpbstats.dao.ExerciceDao;
-import fr.cpbstats.dao.TypeExerciceDao;
-import fr.cpbstats.dao.UtilisateurDao;
-import fr.cpbstats.model.Exercice;
-import fr.cpbstats.model.TypeExercice;
-import fr.cpbstats.model.Utilisateur;
+import fr.cpbstats.api.model.Exercice;
+import fr.cpbstats.api.model.TypeExercice;
+import fr.cpbstats.business.ExerciceBusiness;
 
 /**
  * The {@link ExerciceApi} class.
@@ -30,21 +29,16 @@ import fr.cpbstats.model.Utilisateur;
  * 
  */
 @Path("/exercices")
-@Transactional
 @Api(value = "Exercices", description = "API pour les exercices")
 public class ExerciceApi {
 
-    /** The typeExerciceDao. */
+    /** The exerciceBusiness. */
     @Autowired
-    private TypeExerciceDao typeExerciceDao;
+    private ExerciceBusiness exerciceBusiness;
 
-    /** The exerciceDao. */
+    /** The mapper. */
     @Autowired
-    private ExerciceDao exerciceDao;
-
-    /** The utilisateurDao. */
-    @Autowired
-    private UtilisateurDao utilisateurDao;
+    private Mapper mapper;
 
     /**
      * @return
@@ -53,7 +47,11 @@ public class ExerciceApi {
     @Path("/types")
     @ApiOperation("Liste des types d'exercices")
     public List<TypeExercice> getTypeExercices() {
-        return typeExerciceDao.findAll();
+        List<TypeExercice> typeExercices = new ArrayList<TypeExercice>();
+        for (fr.cpbstats.model.TypeExercice typeExercice : exerciceBusiness.findAllTypeExercices()) {
+            typeExercices.add(mapper.map(typeExercice, TypeExercice.class));
+        }
+        return typeExercices;
     }
 
     /**
@@ -63,18 +61,22 @@ public class ExerciceApi {
     @ApiOperation("Liste des exercices de l'utilisateur authentifié")
     public List<Exercice> getExercices() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
-        return exerciceDao.findAllByUser(securityContext.getAuthentication().getName());
+        List<fr.cpbstats.model.Exercice> listeExercices = exerciceBusiness
+                .findAllExercicesByUser(securityContext.getAuthentication().getName());
+        List<Exercice> listeRetour = new ArrayList<Exercice>();
+        for (fr.cpbstats.model.Exercice exercice : listeExercices) {
+            listeRetour.add(mapper.map(exercice, Exercice.class));
+        }
+        return listeRetour;
     }
 
     @POST
     @ApiOperation("Eregistre un exercice")
-    public void addExercices(Exercice exercice) {
+    public void addExercices(@ApiParam("Exercice à sauvegarder") Exercice exercice) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         // TODO : Rajouter utilisateur dans auth
-        Utilisateur utilisateur = utilisateurDao.findUtilisateurByLogin(securityContext
-                .getAuthentication().getName());
-        exercice.setUtilisateur(utilisateur);
-        exerciceDao.persist(exercice);
+        exerciceBusiness.addExercice(mapper.map(exercice, fr.cpbstats.model.Exercice.class),
+                securityContext.getAuthentication().getName());
     }
 
     @DELETE
@@ -82,6 +84,6 @@ public class ExerciceApi {
     @ApiOperation("Liste des exercices de l'utilisateur authentifié")
     public void deleteExercices(@PathParam("id") int id) {
         // TODO : Vérification pour notFoundException
-        exerciceDao.remove(exerciceDao.find(id));
+        exerciceBusiness.deleteExercice(id);
     }
 }

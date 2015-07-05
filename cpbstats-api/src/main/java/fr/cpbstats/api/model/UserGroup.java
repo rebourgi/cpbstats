@@ -5,13 +5,13 @@ import java.util.List;
 import com.wordnik.swagger.annotations.ApiModel;
 
 /**
- * The {@link UserGroupApiModel} class.
+ * The {@link UserGroup} class.
  * 
  * @author rebourgi
  *
  */
 @ApiModel
-public class UserGroupApiModel {
+public class UserGroup {
 
     /** The username. */
     private String username;

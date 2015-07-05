@@ -2,9 +2,12 @@ package fr.cpbstats.model;
 
 // Generated 29 juin 2015 23:26:12 by Hibernate Tools 3.2.2.GA
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -46,6 +49,7 @@ public class Rencontre implements java.io.Serializable {
     }
 
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     public int getId() {
         return this.id;

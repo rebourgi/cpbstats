@@ -22,7 +22,7 @@
 <body>
 	<div class="page-signin" ng-controller="NavigationCtrl">
 		<nav class="navbar navbar-default navbar-collapse navbar-static-top " role="navigation">
-			<div class="container">
+			<div class="container-fluid">
 				<form class="navbar-form navbar-left ">
 					<div class="form-group">
 						<button ng-click="home()"
@@ -38,12 +38,12 @@
 					<li class="dropdown"><a data-target=""
 						class="dropdown-toggle btn-inverse" data-toggle="dropdown"
 						role="button" aria-expanded="false"><span
-							class="glyphicon glyphicon-user"></span> {{currentGroup}} <span
+							class="glyphicon glyphicon-user"></span> {{$root.user.username}} <span
 							class="caret"></span> </a>
 						<ul class="dropdown-menu" role="menu">
-							<li ng-click="selected(group)"
+<!-- 							<li ng-click="selected(group)"
 								ng-repeat="group in $root.groups | orderBy: 'group' as filtered_result track by group"><a
-								data-target="">{{group}}</a></li>
+								data-target="">{{group}}</a></li> -->
 						</ul></li>
 					<li>
 						<form class="navbar-form">

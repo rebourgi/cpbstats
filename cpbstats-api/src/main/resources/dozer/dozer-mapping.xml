@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping>
+		<class-a>fr.cpbstats.model.Exercice</class-a>
+		<class-b>fr.cpbstats.api.model.Exercice</class-b>
+		<field>
+			<a>id.id</a>
+			<b>id</b>
+		</field>
+		<field>
+			<a>id.typeExerciceId</a>
+			<b>typeExerciceId</b>
+		</field>
+	</mapping>	
+	
+	<mapping>
+		<class-a>fr.cpbstats.model.Utilisateur</class-a>
+		<class-b>fr.cpbstats.api.model.UserGroup</class-b>
+		<field>
+			<a>login</a>
+			<b>username</b>
+		</field>
+	</mapping>	
+	
+</mappings>  

@@ -21,7 +21,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -29,7 +28,9 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 
-import fr.cpbstats.api.model.UserGroupApiModel;
+import fr.cpbstats.api.model.UserGroup;
+import fr.cpbstats.business.UtilisateurBusiness;
+import fr.cpbstats.model.Utilisateur;
 
 /**
  * @author hkaramok
@@ -38,7 +39,6 @@ import fr.cpbstats.api.model.UserGroupApiModel;
 @Path("/authentication")
 @Api(value = "Authentication",
         description = "Restful Web Service to manage the log in and the log out")
-@Transactional
 public class SecurityApiService {
 
     /** The LOGGER. */
@@ -51,6 +51,10 @@ public class SecurityApiService {
     /** The authenticationManager. */
     @Autowired
     protected AuthenticationManager authenticationManager;
+
+    /** The utilisateurBusiness. */
+    @Autowired
+    protected UtilisateurBusiness utilisateurBusiness;
 
     /**
      * Allows user to log in. If the given information are not correct, the operation fails.
@@ -75,7 +79,7 @@ public class SecurityApiService {
     @Path("/login")
     @ApiOperation("Login")
     @ApiResponses(value = { @ApiResponse(code = 403, message = "Forbidden") })
-    public UserGroupApiModel login(@Context HttpServletRequest httpRequest,
+    public UserGroup login(@Context HttpServletRequest httpRequest,
             @ApiParam("Username") @QueryParam("username") String username,
             @ApiParam("User's password") @QueryParam("password") String password) {
 
@@ -92,7 +96,11 @@ public class SecurityApiService {
                     HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
                     securityContext);
 
-            return null;
+            // TODO : Mettre utilisateur dans authent
+
+            Utilisateur utilisateur = utilisateurBusiness.findUtilisateur(username);
+
+            return mapper.map(utilisateur, UserGroup.class);
 
         } catch (BadCredentialsException bce) {
             LOGGER.error("Authentication failed.", bce);
@@ -128,5 +136,19 @@ public class SecurityApiService {
         }
         LOGGER.debug("Security context after : {}", securityContext);
         return Response.ok().build();
+    }
+
+    @GET
+    @Path("/status")
+    @ApiOperation("Statut")
+    @ApiResponses(value = { @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 500, message = "Error") })
+    public Response status() {
+        try {
+            SecurityContextHolder.getContext().getAuthentication();
+            return Response.ok().build();
+        } catch (BadCredentialsException e) {
+            throw new ForbiddenException();
+        }
     }
 }

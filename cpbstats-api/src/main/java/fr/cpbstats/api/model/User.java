@@ -3,13 +3,13 @@ package fr.cpbstats.api.model;
 import com.wordnik.swagger.annotations.ApiModel;
 
 /**
- * The {@link UserApiModel} class.
+ * The {@link User} class.
  * 
  * @author rebourgi
  *
  */
 @ApiModel
-public class UserApiModel {
+public class User {
 
     /** The id. */
     private String id;

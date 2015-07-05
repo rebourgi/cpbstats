@@ -22,9 +22,9 @@ angular.module('app').controller('NavigationCtrl', function($rootScope, $scope, 
     if ($scope.isLogged !== true || $scope.isLogged !== false) {
         authorisationService.getStatut().success(function(data) {
             $rootScope.isLogged = true;
-            $rootScope.user = data;
-            $rootScope.groups = data.groups;
-            $rootScope.currentGroup = data.groups[0];
+            //$rootScope.user = data;
+            //$rootScope.groups = data.groups;
+            // $rootScope.currentGroup = data.groups[0];
             $location.path('/home');
         }).error(function() {
             $location.path('/signin');
