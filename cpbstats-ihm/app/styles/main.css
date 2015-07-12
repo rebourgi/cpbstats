@@ -63,7 +63,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
 	.container {
-		max-width: 730px;
+		width: auto;
 	}
 
 	/* Remove the padding we set earlier */
@@ -85,6 +85,23 @@ body {
 	}
 }
 
+@media (min-width: 992px) {
+  .container {
+    width: auto;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: auto
+  }
+}
+@media (min-width: 1258px) {
+  .container {
+    width: 1200px;
+  }
+}
+
+
 .mygrid {
 	width: 590px;
 	height: 210px;
@@ -102,8 +119,6 @@ body {
 html, body {
 	height: 100%;
 }
-
-{
 
 
 .border {
@@ -211,3 +226,4 @@ html, body {
 #view {
 	margin-bottom: 90px;
 }
+
