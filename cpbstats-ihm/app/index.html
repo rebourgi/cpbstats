@@ -36,8 +36,9 @@
 				</form>
 				<ul class="nav navbar-nav" ng-if="isLogged">
 					<li class="nav-item"><a href="#home" id="dashboard" name="dashboard" title="Dashboard" data-indexlinks>Tableau de bord</a></li>
-					<li class="nav-item"><a href="rencontres" id="rencontres" name="rencontres" title="Mes Rencontres" data-indexlinks>Mes Rencontres</a></li>
+					<li class="nav-item"><a href="#rencontres" id="rencontres" name="rencontres" title="Mes Rencontres" data-indexlinks>Mes Rencontres</a></li>
 					<li class="nav-item"><a href="#physique" id="physique" name="physique" title="Mon Physique" data-indexlinks>Mon Physique</a></li>
+					<li class="nav-item"><a href="#objectifs" id="objectifs" name="objectifs" title="Mes Objectifs" data-indexlinks>Mes Objectifs</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right" ng-if="isLogged">
 					<li class="dropdown"><a data-target=""
@@ -112,6 +113,7 @@
 	<script src="scripts/controllers/home.js"></script>
 	<script src="scripts/services/authorisationService.js"></script>
 	<script src="scripts/services/userService.js"></script>
+	<script src="scripts/services/userDataService.js"></script>
 	<!-- endbuild -->
 
 	</div>

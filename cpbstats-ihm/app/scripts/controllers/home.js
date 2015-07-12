@@ -5,7 +5,7 @@
  * @name app.controller:HomeCtrl
  * @description # HomeCtrl Controller of the app
  */
-angular.module('app').controller('HomeCtrl', function($rootScope, $scope, $log, toaster) {
+angular.module('app').controller('HomeCtrl', function($rootScope, $scope, $log, toaster, userDataService) {
 
 	  $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
 	  $scope.data = [320, 500, 100];
@@ -17,6 +17,15 @@ angular.module('app').controller('HomeCtrl', function($rootScope, $scope, $log, 
 	    [65, 59, 80, 81, 56, 55, 40],
 	    [28, 48, 40, 19, 86, 27, 90]
 	  ];
+	  
+	  userDataService.getTypes().success(function(data) {
+          $log.info(data);
+          $log.info(data);
+          $scope.dataTypeExercices =  data.data;
+          $scope.labelsTypeExercices = data.labels;
+      }).error(function(data) {
+          $log.info(data);
+      });
 	
     $scope.isAdmin = function() {
         return $rootScope.currentGroup === "ADMINISTRATEUR";

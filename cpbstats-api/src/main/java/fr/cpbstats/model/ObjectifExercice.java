@@ -19,6 +19,8 @@ import javax.persistence.Table;
 @Table(name = "objectif_exercice")
 public class ObjectifExercice implements java.io.Serializable {
 
+    /** The serialVersionUID. */
+    private static final long serialVersionUID = -2799424935529576686L;
     private ObjectifExerciceId id;
     private TypeExercice typeExercice;
     private Objectif objectif;

@@ -6,23 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.cpbstats.business.ExerciceBusiness;
+import fr.cpbstats.business.PhysiqueBusiness;
 import fr.cpbstats.dao.ExerciceDao;
+import fr.cpbstats.dao.ObjectifDao;
 import fr.cpbstats.dao.TypeExerciceDao;
 import fr.cpbstats.dao.UtilisateurDao;
 import fr.cpbstats.model.Exercice;
+import fr.cpbstats.model.Objectif;
 import fr.cpbstats.model.TypeExercice;
 import fr.cpbstats.model.Utilisateur;
 
 /**
- * The {@link ExerciceBusinessImpl} class.
+ * The {@link PhysiqueBusinessImpl} class.
  * 
  * @author rebourgi
  * 
  */
 @Component
 @Transactional
-public class ExerciceBusinessImpl implements ExerciceBusiness {
+public class PhysiqueBusinessImpl implements PhysiqueBusiness {
 
     /** The typeExerciceDao. */
     @Autowired
@@ -31,6 +33,10 @@ public class ExerciceBusinessImpl implements ExerciceBusiness {
     /** The exerciceDao. */
     @Autowired
     private ExerciceDao exerciceDao;
+
+    /** The utilisateurDao. */
+    @Autowired
+    private ObjectifDao objectifDao;
 
     /** The utilisateurDao. */
     @Autowired
@@ -50,7 +56,13 @@ public class ExerciceBusinessImpl implements ExerciceBusiness {
 
     /** {@inheritDoc} */
     @Override
-    public void addExercice(Exercice exercice, String login) {
+    public List<TypeExercice> findTypeExercicesByUser(String login) {
+        return typeExerciceDao.findAll();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void addExercice(String login, Exercice exercice) {
         Utilisateur utilisateur = utilisateurDao.findUtilisateurByLogin(login);
         exercice.setUtilisateur(utilisateur);
         // TODO : effectuer verif avec typeExercice.format
@@ -61,6 +73,28 @@ public class ExerciceBusinessImpl implements ExerciceBusiness {
     @Override
     public void deleteExercice(int idExercice) {
         exerciceDao.remove(exerciceDao.find(idExercice));
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public List<Objectif> findObjectifsByUtilisateur(String login) {
+        return objectifDao.findAllByLogin(login);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Objectif addObjectifs(String login, Objectif objectif) {
+        Utilisateur utilisateur = utilisateurDao.findUtilisateurByLogin(login);
+        objectif.setUtilisateur(utilisateur);
+        objectif.setObjectifExercices(null);
+        objectifDao.persist(objectif);
+        return objectif;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Objectif updateObjectifs(Objectif objectif) {
+        return objectifDao.merge(objectif);
     }
 
 }

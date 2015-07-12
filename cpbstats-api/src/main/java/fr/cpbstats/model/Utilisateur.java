@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Table(name = "utilisateur")
 public class Utilisateur implements java.io.Serializable {
 
-    private int id;
+    private Integer id;
     private TypeProfil typeProfil;
     private String nom;
     private String prenom;
@@ -37,12 +37,12 @@ public class Utilisateur implements java.io.Serializable {
 
     public Utilisateur() {}
 
-    public Utilisateur(int id, TypeProfil typeProfil) {
+    public Utilisateur(Integer id, TypeProfil typeProfil) {
         this.id = id;
         this.typeProfil = typeProfil;
     }
 
-    public Utilisateur(int id, TypeProfil typeProfil, String nom, String prenom, String login,
+    public Utilisateur(Integer id, TypeProfil typeProfil, String nom, String prenom, String login,
             String password, Set<Objectif> objectifs, Set<Exercice> exercices,
             Set<Rencontre> rencontres) {
         this.id = id;
@@ -59,11 +59,11 @@ public class Utilisateur implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

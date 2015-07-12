@@ -4,8 +4,8 @@ package fr.cpbstats.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,20 +25,22 @@ import javax.persistence.Table;
 @Table(name = "objectif")
 public class Objectif implements java.io.Serializable {
 
-    private int id;
+    /** The serialVersionUID. */
+    private static final long serialVersionUID = 8776364241462090692L;
+    private Integer id;
     private Utilisateur utilisateur;
     private String libelle;
-    private Set<ObjectifExercice> objectifExercices = new HashSet<ObjectifExercice>(0);
+    private List<ObjectifExercice> objectifExercices = new ArrayList<ObjectifExercice>(0);
 
     public Objectif() {}
 
-    public Objectif(int id, Utilisateur utilisateur) {
+    public Objectif(Integer id, Utilisateur utilisateur) {
         this.id = id;
         this.utilisateur = utilisateur;
     }
 
-    public Objectif(int id, Utilisateur utilisateur, String libelle,
-            Set<ObjectifExercice> objectifExercices) {
+    public Objectif(Integer id, Utilisateur utilisateur, String libelle,
+            List<ObjectifExercice> objectifExercices) {
         this.id = id;
         this.utilisateur = utilisateur;
         this.libelle = libelle;
@@ -48,11 +50,11 @@ public class Objectif implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -76,11 +78,11 @@ public class Objectif implements java.io.Serializable {
     }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "objectif")
-    public Set<ObjectifExercice> getObjectifExercices() {
+    public List<ObjectifExercice> getObjectifExercices() {
         return this.objectifExercices;
     }
 
-    public void setObjectifExercices(Set<ObjectifExercice> objectifExercices) {
+    public void setObjectifExercices(List<ObjectifExercice> objectifExercices) {
         this.objectifExercices = objectifExercices;
     }
 
