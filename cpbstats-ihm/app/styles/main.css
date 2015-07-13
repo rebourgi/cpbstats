@@ -107,6 +107,12 @@ body {
 	height: 210px;
 }
 
+.btn-del-obj {
+    font-size: 12px;
+    margin-bottom: 0;
+    padding: 2px 9px;
+}
+
 .my-drop-zone {
 	border: solid 1px black;
 	background-color: white;

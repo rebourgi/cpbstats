@@ -123,6 +123,14 @@ public class UserDataApi {
         // TODO
     }
 
+    @DELETE
+    @Path("/objectifs/{id}")
+    @ApiOperation("Suppression de l'objectif pour l'utilisateur authentifié")
+    public void deleteObjectif(@PathParam("id") int id) {
+        // TODO : Vérification pour notFoundException
+        physiqueBusiness.deleteObjectif(id);
+    }
+
     @POST
     @Path("/exercices")
     @ApiOperation("Eregistre un exercice")

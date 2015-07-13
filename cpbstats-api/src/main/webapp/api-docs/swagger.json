@@ -6,11 +6,11 @@
   },
   "basePath" : "/cpbstats-api/rest",
   "tags" : [ {
-    "name" : "Exercices"
+    "name" : "User Data"
   }, {
     "name" : "Authentication"
   }, {
-    "name" : "User Data"
+    "name" : "Exercices"
   } ],
   "schemes" : [ "http", "https" ],
   "paths" : {
@@ -194,20 +194,66 @@
             }
           }
         }
-      },
-      "put" : {
+      }
+    },
+    "/userData/objectifs/exercices" : {
+      "post" : {
         "tags" : [ "User Data" ],
-        "summary" : "Enregistre un objectif",
+        "summary" : "Exercice de l'objectif à sauvegarder",
         "description" : "",
-        "operationId" : "updateObjectif",
+        "operationId" : "addObjectifExercice",
         "parameters" : [ {
           "in" : "body",
           "name" : "body",
           "description" : "Objectif à sauvegarder",
           "required" : false,
           "schema" : {
-            "$ref" : "#/definitions/Objectif"
+            "$ref" : "#/definitions/ObjectifExercice"
           }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "User Data" ],
+        "summary" : "Enregistre un objectif",
+        "description" : "",
+        "operationId" : "updateObjectifExercice",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Exercice de l'objectif à sauvegarder",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ObjectifExercice"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/userData/objectifs/{id}" : {
+      "delete" : {
+        "tags" : [ "User Data" ],
+        "summary" : "Suppression de l'objectif pour l'utilisateur authentifié",
+        "description" : "",
+        "operationId" : "deleteObjectif",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
         } ],
         "responses" : {
           "default" : {

@@ -97,4 +97,10 @@ public class PhysiqueBusinessImpl implements PhysiqueBusiness {
         return objectifDao.merge(objectif);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void deleteObjectif(int id) {
+        objectifDao.remove(objectifDao.find(id));
+    }
+
 }

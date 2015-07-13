@@ -59,4 +59,10 @@ public interface PhysiqueBusiness {
      */
     Objectif updateObjectifs(Objectif objectif);
 
+    /**
+     * @param login
+     * @param objectif
+     */
+    void deleteObjectif(int id);
+
 }

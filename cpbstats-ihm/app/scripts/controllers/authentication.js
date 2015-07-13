@@ -23,12 +23,13 @@ angular.module('app').controller('AuthenticationCtrl', function($rootScope, $sco
         }).error(function(data, status) {
             if (status === 403) {
                 // affichage de message d'erreur
-                $log.info("Pseudo ou mot de passe incorrecte.");
+                $log.info("Pseudo ou mot de passe incorrecte");
                 toaster.clear();
-                toaster.pop('error', "Login ou mot de passe incorrecte!");
-            } else if (status === 500) {
+                toaster.pop('error', "Login ou mot de passe incorrecte");
+            } else if (status === 500 || status === 404 ) {
+            	$log.info(status);
                 toaster.clear();
-                toaster.pop('error', "Une erreur est survenue.");
+                toaster.pop('error', "Une erreur est survenue durant la connexion");
             }
         });
     };

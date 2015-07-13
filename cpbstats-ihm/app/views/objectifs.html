@@ -1,10 +1,41 @@
-<div class="container" id="view" ng-controller="HomeCtrl">
+<div class="container" id="view" data-ng-controller="objectifsCtrl">
 	<div class="row" style="margin-bottom: 50px;">
 		<div class="col-md-12 pull-left">
 			<h4>Mes Objectifs</h4>
 		</div>
-		<div class="col-md-4 pull-left">
-		TODO : Tableau
+		<div class="col-md-12 pull-left">
+        	<form name="formAddObj" class="panel-heading" role="form">
+   	        	<div class="col-xs-4 col-md-2 pull-left ">
+   					<label class="control-label">Nouvel objectif :</label>
+   				</div>
+   				<div class="col-xs-8 col-md-3 pull-left">
+   					<input data-ng-model="newObjectif.libelle" type="text" class="form-control input-sm">
+   				</div>
+   				<div class="col-xs-8 col-md-3 pull-left" >
+   					<button class="btn btn-primary" data-ng-click="addObjectif()">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>
+   				</div>
+			</form>
+			<br>
+			<br>
+			<accordion data-ng-repeat="objectif in objectifs">
+			    <accordion-group is-open="status.open" class="accordion_modifyed">
+		        <accordion-heading class="">
+		        <div class="">
+		           <i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.open,  'glyphicon-chevron-right': !status.open}"></i>
+		           <div class="">&nbsp;&nbsp;Objectif : {{objectif.libelle}}
+		            <button class="btn btn-primary btn-del-obj pull-right" data-ng-click="delObjectif($index)">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+					</div>
+					</div>
+		        </accordion-heading>
+		        	<form name="formSearch" class="panel-heading search_dossier" role="form">
+		        		<label class="control-label search_form">Objectif : </label>
+					</form>
+		    	</accordion-group>
+		  	</accordion>
 		</div>
 	</div>
 </div>
