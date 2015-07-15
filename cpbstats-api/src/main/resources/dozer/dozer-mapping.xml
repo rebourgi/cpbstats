@@ -40,12 +40,8 @@
 		<class-a>fr.cpbstats.model.ObjectifExercice</class-a>
 		<class-b>fr.cpbstats.api.model.ObjectifExercice</class-b>
 		<field>
-			<a>id.typeExerciceId</a>
-			<b>idTypeExercice</b>
-		</field>
-		<field>
-			<a>typeExercice.libelle</a>
-			<b>libelleTypeExercice</b>
+			<a>objectif.id</a>
+			<b>idObjectif</b>
 		</field>
 	</mapping>	
 	

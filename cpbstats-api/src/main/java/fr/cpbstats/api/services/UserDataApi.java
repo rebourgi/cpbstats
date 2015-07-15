@@ -97,7 +97,7 @@ public class UserDataApi {
     @ApiOperation("Enregistre un objectif")
     public Integer addObjectif(@ApiParam("Objectif à sauvegarder") Objectif objectif) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
-        fr.cpbstats.model.Objectif obj = physiqueBusiness.addObjectifs(securityContext
+        fr.cpbstats.model.Objectif obj = physiqueBusiness.addObjectif(securityContext
                 .getAuthentication().getName(), mapper.map(objectif,
                 fr.cpbstats.model.Objectif.class));
 
@@ -110,8 +110,10 @@ public class UserDataApi {
     public Integer addObjectifExercice(
             @ApiParam("Objectif à sauvegarder") ObjectifExercice objectifExercice) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
-        // TODO
-        return 0;
+        fr.cpbstats.model.ObjectifExercice objEx = physiqueBusiness.addObjectifExercice(
+                securityContext.getAuthentication().getName(),
+                mapper.map(objectifExercice, fr.cpbstats.model.ObjectifExercice.class));
+        return objEx.getId();
     }
 
     @PUT
@@ -120,7 +122,18 @@ public class UserDataApi {
     public void updateObjectifExercice(
             @ApiParam("Exercice de l'objectif à sauvegarder") ObjectifExercice objectifExercice) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
-        // TODO
+        // TODO : controle login
+        physiqueBusiness.updateObjectifExercice(mapper.map(objectifExercice,
+                fr.cpbstats.model.ObjectifExercice.class));
+    }
+
+    @DELETE
+    @Path("/objectifs/exercices/{id}")
+    @ApiOperation("Enregistre un objectif")
+    public void deleteObjectifExercice(@PathParam("id") int id) {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        // TODO : controle login
+        physiqueBusiness.deleteObjectifExercice(id);
     }
 
     @DELETE

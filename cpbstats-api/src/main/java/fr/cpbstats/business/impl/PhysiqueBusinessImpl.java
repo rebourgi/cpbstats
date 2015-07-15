@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.cpbstats.business.PhysiqueBusiness;
 import fr.cpbstats.dao.ExerciceDao;
 import fr.cpbstats.dao.ObjectifDao;
+import fr.cpbstats.dao.ObjectifExerciceDao;
 import fr.cpbstats.dao.TypeExerciceDao;
 import fr.cpbstats.dao.UtilisateurDao;
 import fr.cpbstats.model.Exercice;
 import fr.cpbstats.model.Objectif;
+import fr.cpbstats.model.ObjectifExercice;
 import fr.cpbstats.model.TypeExercice;
 import fr.cpbstats.model.Utilisateur;
 
@@ -34,9 +36,13 @@ public class PhysiqueBusinessImpl implements PhysiqueBusiness {
     @Autowired
     private ExerciceDao exerciceDao;
 
-    /** The utilisateurDao. */
+    /** The objectifDao. */
     @Autowired
     private ObjectifDao objectifDao;
+
+    /** The objectifExerciceDao. */
+    @Autowired
+    private ObjectifExerciceDao objectifExerciceDao;
 
     /** The utilisateurDao. */
     @Autowired
@@ -83,7 +89,7 @@ public class PhysiqueBusinessImpl implements PhysiqueBusiness {
 
     /** {@inheritDoc} */
     @Override
-    public Objectif addObjectifs(String login, Objectif objectif) {
+    public Objectif addObjectif(String login, Objectif objectif) {
         Utilisateur utilisateur = utilisateurDao.findUtilisateurByLogin(login);
         objectif.setUtilisateur(utilisateur);
         objectif.setObjectifExercices(null);
@@ -93,7 +99,7 @@ public class PhysiqueBusinessImpl implements PhysiqueBusiness {
 
     /** {@inheritDoc} */
     @Override
-    public Objectif updateObjectifs(Objectif objectif) {
+    public Objectif updateObjectif(Objectif objectif) {
         return objectifDao.merge(objectif);
     }
 
@@ -101,6 +107,25 @@ public class PhysiqueBusinessImpl implements PhysiqueBusiness {
     @Override
     public void deleteObjectif(int id) {
         objectifDao.remove(objectifDao.find(id));
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ObjectifExercice addObjectifExercice(String login, ObjectifExercice objectifExercice) {
+        objectifExerciceDao.persist(objectifExercice);
+        return objectifExercice;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ObjectifExercice updateObjectifExercice(ObjectifExercice objectifExercice) {
+        return objectifExerciceDao.merge(objectifExercice);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void deleteObjectifExercice(int id) {
+        objectifExerciceDao.remove(objectifExerciceDao.find(id));
     }
 
 }

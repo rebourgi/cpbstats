@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.cpbstats.model.Exercice;
 import fr.cpbstats.model.Objectif;
+import fr.cpbstats.model.ObjectifExercice;
 import fr.cpbstats.model.TypeExercice;
 
 /**
@@ -51,13 +52,13 @@ public interface PhysiqueBusiness {
      * @param login
      * @param objectif
      */
-    Objectif addObjectifs(String login, Objectif objectif);
+    Objectif addObjectif(String login, Objectif objectif);
 
     /**
      * @param login
      * @param objectif
      */
-    Objectif updateObjectifs(Objectif objectif);
+    Objectif updateObjectif(Objectif objectif);
 
     /**
      * @param login
@@ -65,4 +66,9 @@ public interface PhysiqueBusiness {
      */
     void deleteObjectif(int id);
 
+    ObjectifExercice addObjectifExercice(String login, ObjectifExercice objectifExercice);
+
+    ObjectifExercice updateObjectifExercice(ObjectifExercice objectifExercice);
+
+    void deleteObjectifExercice(int id);
 }

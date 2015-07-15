@@ -1,13 +1,14 @@
 package fr.cpbstats.model;
 
-// Generated 29 juin 2015 23:26:12 by Hibernate Tools 3.2.2.GA
+// Generated 13 juil. 2015 22:22:31 by Hibernate Tools 3.2.2.GA
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,9 +20,7 @@ import javax.persistence.Table;
 @Table(name = "objectif_exercice")
 public class ObjectifExercice implements java.io.Serializable {
 
-    /** The serialVersionUID. */
-    private static final long serialVersionUID = -2799424935529576686L;
-    private ObjectifExerciceId id;
+    private Integer id;
     private TypeExercice typeExercice;
     private Objectif objectif;
     private String data;
@@ -31,15 +30,13 @@ public class ObjectifExercice implements java.io.Serializable {
 
     public ObjectifExercice() {}
 
-    public ObjectifExercice(ObjectifExerciceId id, TypeExercice typeExercice, Objectif objectif) {
-        this.id = id;
+    public ObjectifExercice(TypeExercice typeExercice, Objectif objectif) {
         this.typeExercice = typeExercice;
         this.objectif = objectif;
     }
 
-    public ObjectifExercice(ObjectifExerciceId id, TypeExercice typeExercice, Objectif objectif,
-            String data, String date, Boolean recurrentSemaine, Boolean recurrentMois) {
-        this.id = id;
+    public ObjectifExercice(TypeExercice typeExercice, Objectif objectif, String data, String date,
+            Boolean recurrentSemaine, Boolean recurrentMois) {
         this.typeExercice = typeExercice;
         this.objectif = objectif;
         this.data = data;
@@ -48,22 +45,19 @@ public class ObjectifExercice implements java.io.Serializable {
         this.recurrentMois = recurrentMois;
     }
 
-    @EmbeddedId
-    @AttributeOverrides({
-            @AttributeOverride(name = "objectifId", column = @Column(name = "objectif_id",
-                    nullable = false)),
-            @AttributeOverride(name = "typeExerciceId", column = @Column(name = "type_exercice_id",
-                    nullable = false)) })
-    public ObjectifExerciceId getId() {
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(ObjectifExerciceId id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type_exercice_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "type_exercice_id", nullable = false)
     public TypeExercice getTypeExercice() {
         return this.typeExercice;
     }
@@ -73,7 +67,7 @@ public class ObjectifExercice implements java.io.Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "objectif_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "objectif_id", nullable = false)
     public Objectif getObjectif() {
         return this.objectif;
     }

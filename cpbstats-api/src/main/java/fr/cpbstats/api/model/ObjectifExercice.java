@@ -17,11 +17,14 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ObjectifExercice {
 
-    @ApiModelProperty(value = "Identifiant du type d'exercice")
-    private Integer idTypeExercice;
+    @ApiModelProperty(value = "Identifiant")
+    private Integer id;
 
-    @ApiModelProperty(value = "Type d'exercice")
-    private String libelleTypeExercice;
+    @ApiModelProperty(value = "Type Exercice")
+    TypeExercice typeExercice;
+
+    @ApiModelProperty(value = "Identifiant de l'objectif")
+    private Integer idObjectif;
 
     @ApiModelProperty(value = "Donnée")
     private String data;
@@ -36,41 +39,60 @@ public class ObjectifExercice {
     private Boolean recurrentMois;
 
     /**
-     * Return the ObjectifExercice idTypeExercice.
+     * Return the ObjectifExercice id.
      * 
-     * @return the idTypeExercice
+     * @return the id
      */
-    public Integer getIdTypeExercice() {
-        return idTypeExercice;
+    public Integer getId() {
+        return id;
     }
 
     /**
-     * Set the ObjectifExercice idTypeExercice.
+     * Set the ObjectifExercice id.
      * 
-     * @param idTypeExercice
-     *            the idTypeExercice to set
+     * @param id
+     *            the id to set
      */
-    public void setIdTypeExercice(Integer idTypeExercice) {
-        this.idTypeExercice = idTypeExercice;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
-     * Return the ObjectifExercice libelleTypeExercice.
+     * Return the ObjectifExercice typeExercice.
      * 
-     * @return the libelleTypeExercice
+     * @return the typeExercice
      */
-    public String getLibelleTypeExercice() {
-        return libelleTypeExercice;
+    public TypeExercice getTypeExercice() {
+        return typeExercice;
     }
 
     /**
-     * Set the ObjectifExercice libelleTypeExercice.
+     * Set the ObjectifExercice typeExercice.
      * 
-     * @param libelleTypeExercice
-     *            the libelleTypeExercice to set
+     * @param typeExercice
+     *            the typeExercice to set
      */
-    public void setLibelleTypeExercice(String libelleTypeExercice) {
-        this.libelleTypeExercice = libelleTypeExercice;
+    public void setTypeExercice(TypeExercice typeExercice) {
+        this.typeExercice = typeExercice;
+    }
+
+    /**
+     * Return the ObjectifExercice idObjectif.
+     * 
+     * @return the idObjectif
+     */
+    public Integer getIdObjectif() {
+        return idObjectif;
+    }
+
+    /**
+     * Set the ObjectifExercice idObjectif.
+     * 
+     * @param idObjectif
+     *            the idObjectif to set
+     */
+    public void setIdObjectif(Integer idObjectif) {
+        this.idObjectif = idObjectif;
     }
 
     /**

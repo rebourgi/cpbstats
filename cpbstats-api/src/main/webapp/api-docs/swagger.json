@@ -242,6 +242,26 @@
         }
       }
     },
+    "/userData/objectifs/exercices/{id}" : {
+      "delete" : {
+        "tags" : [ "User Data" ],
+        "summary" : "Enregistre un objectif",
+        "description" : "",
+        "operationId" : "deleteObjectifExercice",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
     "/userData/objectifs/{id}" : {
       "delete" : {
         "tags" : [ "User Data" ],
@@ -343,14 +363,19 @@
     },
     "ObjectifExercice" : {
       "properties" : {
-        "idTypeExercice" : {
+        "id" : {
           "type" : "integer",
           "format" : "int32",
-          "description" : "Identifiant du type d'exercice"
+          "description" : "Identifiant"
         },
-        "libelleTypeExercice" : {
-          "type" : "string",
-          "description" : "Type d'exercice"
+        "typeExercice" : {
+          "description" : "Type Exercice",
+          "$ref" : "#/definitions/TypeExercice"
+        },
+        "idObjectif" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Identifiant de l'objectif"
         },
         "data" : {
           "type" : "string",
@@ -369,6 +394,31 @@
           "type" : "boolean",
           "description" : "Récurrent toutes les mois ou non",
           "default" : false
+        }
+      }
+    },
+    "TypeExercice" : {
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Identifiant du type d'exercice"
+        },
+        "libelle" : {
+          "type" : "string",
+          "description" : "Libelle du type d'exercice"
+        },
+        "unite" : {
+          "type" : "string",
+          "description" : "Unité"
+        },
+        "format" : {
+          "type" : "string",
+          "description" : "Format de validation"
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Description du type d'exercice"
         }
       }
     },
