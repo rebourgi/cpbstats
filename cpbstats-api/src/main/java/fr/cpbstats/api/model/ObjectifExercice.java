@@ -29,9 +29,6 @@ public class ObjectifExercice {
     @ApiModelProperty(value = "Donnée")
     private String data;
 
-    @ApiModelProperty(value = "Date")
-    private String date;
-
     @ApiModelProperty(value = "Récurrent toutes les semaines ou non")
     private Boolean recurrentSemaine;
 
@@ -112,25 +109,6 @@ public class ObjectifExercice {
      */
     public void setData(String data) {
         this.data = data;
-    }
-
-    /**
-     * Return the ObjectifExercice date.
-     * 
-     * @return the date
-     */
-    public String getDate() {
-        return date;
-    }
-
-    /**
-     * Set the ObjectifExercice date.
-     * 
-     * @param date
-     *            the date to set
-     */
-    public void setDate(String date) {
-        this.date = date;
     }
 
     /**

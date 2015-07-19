@@ -1,6 +1,6 @@
 package fr.cpbstats.model;
 
-// Generated 13 juil. 2015 22:22:31 by Hibernate Tools 3.2.2.GA
+// Generated 18 juil. 2015 20:17:29 by Hibernate Tools 3.2.2.GA
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -20,27 +20,29 @@ import javax.persistence.Table;
 @Table(name = "objectif_exercice")
 public class ObjectifExercice implements java.io.Serializable {
 
+    /** The serialVersionUID. */
+    private static final long serialVersionUID = -7450505687077544203L;
+
     private Integer id;
     private TypeExercice typeExercice;
     private Objectif objectif;
     private String data;
-    private String date;
     private Boolean recurrentSemaine;
     private Boolean recurrentMois;
 
     public ObjectifExercice() {}
 
-    public ObjectifExercice(TypeExercice typeExercice, Objectif objectif) {
+    public ObjectifExercice(TypeExercice typeExercice, Objectif objectif, String data) {
         this.typeExercice = typeExercice;
         this.objectif = objectif;
+        this.data = data;
     }
 
-    public ObjectifExercice(TypeExercice typeExercice, Objectif objectif, String data, String date,
+    public ObjectifExercice(TypeExercice typeExercice, Objectif objectif, String data,
             Boolean recurrentSemaine, Boolean recurrentMois) {
         this.typeExercice = typeExercice;
         this.objectif = objectif;
         this.data = data;
-        this.date = date;
         this.recurrentSemaine = recurrentSemaine;
         this.recurrentMois = recurrentMois;
     }
@@ -76,22 +78,13 @@ public class ObjectifExercice implements java.io.Serializable {
         this.objectif = objectif;
     }
 
-    @Column(name = "data", length = 45)
+    @Column(name = "data", nullable = false, length = 45)
     public String getData() {
         return this.data;
     }
 
     public void setData(String data) {
         this.data = data;
-    }
-
-    @Column(name = "date", length = 45)
-    public String getDate() {
-        return this.date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     @Column(name = "recurrent_semaine")

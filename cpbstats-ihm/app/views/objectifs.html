@@ -4,15 +4,41 @@
 			<h4>Mes Objectifs</h4>
 		</div>
 		<div class="col-md-12 pull-left">
-        	<form name="formAddObj" class="panel-heading" role="form">
+        	<form name="formAddObj" class="panel-heading" role="form"  data-toggle="validator">
    	        	<div class="col-xs-4 col-md-2 pull-left ">
    					<label class="control-label">Nouvel objectif :</label>
    				</div>
    				<div class="col-xs-8 col-md-3 pull-left">
-   					<input data-ng-model="newObjectif.libelle" type="text" class="form-control input-sm">
+   					<input data-ng-model="newObjectif.libelle" type="text" class="form-control" 
+   						placeholder="Nom de l'objectif" required>
    				</div>
-   				<div class="col-xs-8 col-md-3 pull-left" >
-   					<button class="btn btn-primary" data-ng-click="addObjectif()">
+   				<div class="col-xs-8 col-md-3 pull-left">
+		            <p class="input-group" data-ng-class="{ 'has-error' : newObjectif.libelle!=null && !formAddObj.$valid }">
+		              <input type="text" class="form-control" data-datepicker-popup="dd/MM/yyyy" 
+		              	data-ng-model="newObjectif.dateDebut" data-is-open="opened[0]" placeholder="Date début" 
+		              	data-ng-required="true" required
+		              	data-current-text="Aujourd'hui" data-clear-text="Effacer" data-close-text="Valider"/>
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" data-ng-click="open($event, '0')">
+		                	<i class="glyphicon glyphicon-calendar"></i>
+		                </button>
+		              </span>
+		            </p>
+   				</div>
+   				<div class="col-xs-8 col-md-3 pull-left">
+		            <p class="input-group">
+		              <input type="text" class="form-control" data-datepicker-popup="dd/MM/yyyy" 
+		              	data-ng-model="newObjectif.dateFin" data-is-open="opened[1]" placeholder="Date fin" 
+		              	data-current-text="Aujourd'hui" data-clear-text="Effacer" data-close-text="Valider"/>
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" data-ng-click="open($event, '1')">
+		                	<i class="glyphicon glyphicon-calendar"></i>
+		                </button>
+		              </span>
+		            </p>
+   				</div>
+   				<div class="col-xs-2 col-md-1 pull-left" >
+   					<button class="btn btn-primary btn-sm" data-ng-click="addObjectif()" data-ng-show="formAddObj.$valid">
 						<span class="glyphicon glyphicon-plus"></span>
 					</button>
    				</div>
@@ -22,27 +48,44 @@
 			<accordion data-ng-repeat="objectif in objectifs">
 			    <accordion-group is-open="status.open" >
 		        <accordion-heading class="">
-		        <div class="">
-		           <i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.open,  'glyphicon-chevron-right': !status.open}"></i>
-		           <div class="">&nbsp;&nbsp;Objectif : {{objectif.libelle}}
-		            <button class="btn btn-primary btn-del-obj pull-right" data-ng-click="delObjectif($index)">
-						<span class="glyphicon glyphicon-remove"></span>
-					</button>
+		        <div>
+		           <i class="pull-left glyphicon" ng-class="{'glyphicon-menu-down': status.open,  'glyphicon-menu-right': !status.open}"></i>
+		           <div>&nbsp;&nbsp;Objectif : {{objectif.libelle}} 
+		           
+		           <span class="glyphicon glyphicon-arrow-right"></span> 
+		           <span data-ng-show="objectif.dateFin !=  null">
+		           	du {{objectif.dateDebut | date:'dd/MM/yyyy'}} au {{objectif.dateFin | date:'dd/MM/yyyy'}}
+		            </span> 
+		           	<span data-ng-show="objectif.dateFin ==  null">
+		           	&agrave; partir du {{objectif.dateDebut | date:'dd/MM/yyyy'}}
+		            </span> 
+			             <div class=" pull-right">
+							<div class="btn-group">
+				            <button class="btn btn-primary btn-xs" data-ng-click="">
+								<span class="glyphicon glyphicon glyphicon-edit"></span>
+							</button>
+							</div>
+				            <div class="btn-group">
+				            <button class="btn btn-primary btn-xs" data-ng-click="delObjectif($index)">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button>
+							</div>
+						</div>
 					</div>
 				</div>
 		        </accordion-heading>
 		        	<form name="formAddObjEx" class="panel-heading" role="form">
         				<div class="col-md-2">
-        					<select data-ng-model="newObjectifExercice.typeExercice" data-ng-options="typeExercice as typeExercice.libelle for typeExercice in typeExercices" class="form-control input-sm"></select>
+        					<select data-ng-model="newObjectifExercice.typeExercice" data-ng-options="typeExercice as typeExercice.libelle for typeExercice in typeExercices" class="form-control"></select>
         				</div>
         				<div class="col-md-1">
-        					<input data-ng-model="newObjectifExercice.data" type="text" class="form-control input-sm"> 
+        					<input data-ng-model="newObjectifExercice.data" type="number" class="form-control"> 
         				</div>
         				<div class="col-md-1">
         					{{newObjectifExercice.typeExercice.unite}}
         				</div>
 		   				<div class="col-xs-6 col-md-2 pull-left" >
-		   					<button class="btn" data-ng-click="addObjectifExercice(newObjectifExercice, $index)">
+		   					<button class="btn btn-sm" data-ng-click="addObjectifExercice(newObjectifExercice, $index)">
 								<span class="glyphicon glyphicon-plus"></span>
 							</button>
 		   				</div>

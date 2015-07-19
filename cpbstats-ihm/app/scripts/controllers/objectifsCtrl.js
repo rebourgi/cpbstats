@@ -60,7 +60,7 @@ angular.module('app').controller('objectifsCtrl', function($rootScope, $scope, $
     	newObjectifExercice.idObjectif = $scope.objectifs[index].id;
 	  	userDataService.addObjectifExercice(newObjectifExercice).success(function(data) {
 	  		newObjectifExercice.id=data;
-	  		$scope.objectifs[index].objectifExercices.push(newObjectifExercice);
+	  		$scope.objectifs[index].objectifExercices.push(angular.copy(newObjectifExercice));
               toaster.clear();
               toaster.pop('info', 'Ajout de l\'exerice dans l\'objectif avec succès');
 	      }).error(function(data) {
@@ -72,4 +72,21 @@ angular.module('app').controller('objectifsCtrl', function($rootScope, $scope, $
     
     $scope.getTypesExercice();
     $scope.getObjectifs();
+    
+    
+    $scope.today = function() {
+        $scope.dt = new Date();
+    };
+    $scope.today();
+    
+    $scope.opened = [];
+    /* Gestion des calendriers */
+    $scope.open = function($event, numCalendar) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        $scope.opened[numCalendar] = !$scope.opened[numCalendar];
+
+    };
+      
 });

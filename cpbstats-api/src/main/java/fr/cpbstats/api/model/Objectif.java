@@ -1,6 +1,7 @@
 package fr.cpbstats.api.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,8 +26,14 @@ public class Objectif {
     private Integer id;
 
     /** The libelle. */
-    @ApiModelProperty(value = "Libelle de l'objectif")
+    @ApiModelProperty(value = "Libelle de l'objectif", required = true)
     private String libelle;
+
+    @ApiModelProperty(value = "Date début", required = true)
+    private Date dateDebut;
+
+    @ApiModelProperty(value = "Date fin")
+    private Date dateFin;
 
     /** The objectifExercices. */
     @ApiModelProperty(value = "Liste des exercices à effectuer")
@@ -68,6 +75,44 @@ public class Objectif {
      */
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+
+    /**
+     * Return the Objectif dateDebut.
+     * 
+     * @return the dateDebut
+     */
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    /**
+     * Set the Objectif dateDebut.
+     * 
+     * @param dateDebut
+     *            the dateDebut to set
+     */
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    /**
+     * Return the Objectif dateFin.
+     * 
+     * @return the dateFin
+     */
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    /**
+     * Set the Objectif dateFin.
+     * 
+     * @param dateFin
+     *            the dateFin to set
+     */
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
     }
 
     /**
