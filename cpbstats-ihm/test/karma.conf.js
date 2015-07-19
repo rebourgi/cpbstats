@@ -39,6 +39,8 @@ module.exports = function(config) {
 	'bower_components/angular-ui-grid/ui-grid.js',
 	'bower_components/Chart.js/Chart.js',
 	'bower_components/angular-chart.js/dist/angular-chart.js',
+	'bower_components/spin.js/spin.js',
+	'bower_components/angular-spinner/angular-spinner.js',
 	'bower_components/angular-mocks/angular-mocks.js',
 	// endbower
 		'app/scripts/**/*.js', 'test/spec/**/*.js' ],

@@ -15,7 +15,7 @@ Chart.defaults.global.colours = [
 var app = angular.module(
         'app',
         [ 'ngAnimate', 'toaster', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'ui.bootstrap', 'angularFileUpload', 'angularModalService',
-                'ui.grid', 'ui.grid.selection', 'chart.js']).config(function($routeProvider) {
+                'ui.grid', 'ui.grid.selection', 'chart.js', 'angularSpinner']).config(function($routeProvider) {
     $routeProvider.when('/home', {
         templateUrl : 'views/home.html'
     }).when('/signin', {
