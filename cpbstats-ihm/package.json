@@ -28,7 +28,7 @@
     "grunt-plato": "^1.2.1",
     "grunt-retire": "^0.3.10",
     "grunt-svgmin": "^2.0.0",
-    "grunt-usemin": "^3.0.0",
+    "grunt-usemin": "3.0.0",
     "grunt-wiredep": "^2.0.0",
     "jasmine-core": "^2.2.0",
     "jshint-stylish": "^1.0.0",
